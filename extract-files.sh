@@ -97,6 +97,13 @@ function blob_fixup() {
         vendor/lib*/libwvhidl.so)
             "${PATCHELF}" --replace-needed libprotobuf-cpp-lite-3.9.1.so libprotobuf-cpp-full-3.9.1.so "${2}"
             ;;
+        vendor/etc/init/android.hardware.audio.service.rc)
+            sed -i 's#/vendor/bin/hw/android\.hardware\.audio\.service#/vendor/bin/hw/android.hardware.audio.service.samsung#g' "${2}"
+            ;;
+        vendor/etc/init/android.hardware.bluetooth@1.0-service.rc)
+            sed -i 's#/vendor/bin/hw/android\.hardware\.bluetooth@1\.0-service#/vendor/bin/hw/android.hardware.bluetooth@1.0-service.samsung#g' "${2}"
+            sed -i '/^[[:space:]]*interface vendor\.samsung/d' "${2}"
+            ;;
     esac
 }
 

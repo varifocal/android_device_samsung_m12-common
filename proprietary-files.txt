@@ -1,5 +1,14 @@
 # All unpinned blobs are extracted from m12dd-user 13 TP1A.220624.014 M127GXXS9DXJ1 release-keys
 
+# Audio HAL server (stock; installed renamed by common.mk, EXTRACT_ONLY so the
+# soong module does not collide with the AOSP source android.hardware.audio.service)
+vendor/bin/hw/android.hardware.audio.service;EXTRACT_ONLY
+vendor/etc/init/android.hardware.audio.service.rc
+
+# Bluetooth HAL server (stock; installed renamed by common.mk)
+vendor/bin/hw/android.hardware.bluetooth@1.0-service;EXTRACT_ONLY
+vendor/etc/init/android.hardware.bluetooth@1.0-service.rc
+
 # Audio
 -vendor/lib/libSamsungPostProcessConvertor.so
 -vendor/lib/lib_SamsungRec_07010.so

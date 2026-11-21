@@ -1,4 +1,4 @@
-<compatibility-matrix version="1.0" type="device">
+<compatibility-matrix version="5.0" type="device">
     <hal format="hidl" optional="true">
         <name>android.frameworks.displayservice</name>
         <version>1.0</version>
@@ -71,4 +71,7 @@
             <instance>default</instance>
         </interface>
     </hal>
+    <system-sdk>
+        <version>30</version>
+    </system-sdk>
 </compatibility-matrix>

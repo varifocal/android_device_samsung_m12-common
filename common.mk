@@ -22,18 +22,19 @@ $(call inherit-product, vendor/samsung/m12-common/m12-common-vendor.mk)
 PRODUCT_CHARACTERISTICS := phone
 
 # Audio
+# The AOSP source HIDL audio HAL (android.hardware.audio@7.0-impl,
+# android.hardware.audio.effect@7.0-impl, android.hardware.audio.service,
+# audio.bluetooth.default, android.hardware.bluetooth.audio-impl) is not
+# installed as source: the stock Samsung audio server registers both
+# IDevicesFactory and the vendor.samsung.hardware.audio factory, and the stock
+# rc points at the renamed .../android.hardware.audio.service.samsung path.
+# Only the AOSP software HALs are kept from source.
 PRODUCT_PACKAGES += \
-    android.hardware.audio.effect@7.0-impl:32 \
-    android.hardware.audio@7.0-impl:32 \
-    android.hardware.audio.service \
-    android.hardware.bluetooth.audio-impl \
-    audio.bluetooth.default \
     audio.r_submix.default \
-    audio.usb.default \
-    libaudioroute \
-    libtinycompress \
-    libprocessgroup.vendor \
-    libstagefright_softomx_plugin.vendor
+    audio.usb.default
+
+PRODUCT_COPY_FILES += \
+    vendor/samsung/m12-common/proprietary/vendor/bin/hw/android.hardware.audio.service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.audio.service.samsung
 
 # Dolby
 PRODUCT_PACKAGES += \
@@ -53,10 +54,10 @@ PRODUCT_COPY_FILES += \
 # Bluetooth
 PRODUCT_PACKAGES += \
     android.hardware.bluetooth@1.0-impl:64 \
-    android.hardware.bluetooth@1.0-service \
     libbt-vendor:64
 
 PRODUCT_COPY_FILES += \
+    vendor/samsung/m12-common/proprietary/vendor/bin/hw/android.hardware.bluetooth@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.bluetooth@1.0-service.samsung \
     hardware/samsung_slsi/libbt/conf/bt_did.conf:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth/bt_did.conf \
     hardware/samsung_slsi/libbt/conf/bt_vendor.conf:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth/bt_vendor.conf
 
@@ -86,27 +87,18 @@ PRODUCT_PACKAGES += \
 
 # Display
 PRODUCT_PACKAGES += \
-    android.hardware.graphics.composer@2.2-service \
     libshim_ui
-
-PRODUCT_PACKAGES += \
-    libdrm.vendor:64
 
 # Dynamic Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # DRM
 PRODUCT_PACKAGES += \
-    android.hardware.drm@1.4.vendor:32 \
     android.hardware.drm-service.clearkey
 
 # fastbootd
 PRODUCT_PACKAGES += \
     fastbootd
-
-# FastCharge
-PRODUCT_PACKAGES += \
-    vendor.lineage.fastcharge@1.0-service.samsung
 
 # Gatekeeper
 PRODUCT_PACKAGES += \
@@ -125,8 +117,6 @@ PRODUCT_PACKAGES += \
 
 # HIDL
 PRODUCT_PACKAGES += \
-    libhidltransport \
-    libhidltransport.vendor \
     libhwbinder \
     libhwbinder.vendor
 
@@ -144,12 +134,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_SET_DEBUGFS_RESTRICTIONS := true
 
 # IMS
-PRODUCT_PACKAGES += \
-    Ims
-
-PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/configs/permissions/privapp-permissions-me.phh.ims.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-me.phh.ims.xml
-
+# The phh-based Ims app (galaxym12development android_packages_apps_ims) has no
+# lineage-23.2 branch and is not part of the sync; its privapp-permission grant
+# is dropped with it. IMS/VoLTE overrides kept for the platform ImsService.
 PRODUCT_SYSTEM_PROPERTIES += \
     persist.dbg.allow_ims_off=1 \
     persist.dbg.volte_avail_ovr=1
@@ -158,6 +145,8 @@ PRODUCT_SYSTEM_PROPERTIES += \
 PRODUCT_PACKAGES += \
     android.hardware.keymaster@4.0-service.samsung \
     libkeymaster4_1support.vendor:64
+
+$(call soong_config_set,samsungVars,target_keymaster4_library,//vendor/samsung/m12-common:libskeymaster4device)
 
 PRODUCT_PACKAGES += \
     libcrypto-tm \
@@ -280,8 +269,7 @@ PRODUCT_SOONG_NAMESPACES += \
     $(COMMON_PATH) \
     hardware/google/interfaces \
     hardware/google/pixel \
-    hardware/samsung \
-    hardware/samsung/aidl/power-libperfmgr
+    hardware/samsung
 
 # Thermal
 PRODUCT_PACKAGES += \
@@ -289,11 +277,8 @@ PRODUCT_PACKAGES += \
 
 # USB
 PRODUCT_PACKAGES += \
-    android.hardware.usb-service.samsung
-
-# Vendor service manager
-PRODUCT_PACKAGES += \
-    vndservicemanager
+    android.hardware.usb-service.samsung \
+    android.hardware.usb.gadget-service.samsung
 
 # NFC and Secure Element packages
 PRODUCT_PACKAGES += \
