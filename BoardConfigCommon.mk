@@ -64,7 +64,7 @@ BOARD_MKBOOTIMG_ARGS += --second_offset $(BOARD_KERNEL_SECOND_OFFSET)
 BOARD_KERNEL_CMDLINE += androidboot.hardware=exynos850 androidboot.selinux=enforcing loop.max_part=7
 
 ## Camera
-$(call soong_config_set,samsungCameraVars,usage_64bit,true)
+$(call soong_config_set_bool,samsungCameraVars,usage_64bit,true)
 
 ## Dynamic Partitions
 BOARD_SUPER_PARTITION_GROUPS := samsung_dynamic_partitions

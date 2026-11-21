@@ -33,9 +33,6 @@ PRODUCT_PACKAGES += \
     audio.r_submix.default \
     audio.usb.default
 
-PRODUCT_COPY_FILES += \
-    vendor/samsung/m12-common/proprietary/vendor/bin/hw/android.hardware.audio.service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.audio.service.samsung
-
 # Dolby
 PRODUCT_PACKAGES += \
     SamsungDAP
@@ -57,7 +54,6 @@ PRODUCT_PACKAGES += \
     libbt-vendor:64
 
 PRODUCT_COPY_FILES += \
-    vendor/samsung/m12-common/proprietary/vendor/bin/hw/android.hardware.bluetooth@1.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/hw/android.hardware.bluetooth@1.0-service.samsung \
     hardware/samsung_slsi/libbt/conf/bt_did.conf:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth/bt_did.conf \
     hardware/samsung_slsi/libbt/conf/bt_vendor.conf:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth/bt_vendor.conf
 
@@ -146,7 +142,7 @@ PRODUCT_PACKAGES += \
     android.hardware.keymaster@4.0-service.samsung \
     libkeymaster4_1support.vendor:64
 
-$(call soong_config_set,samsungVars,target_keymaster4_library,//vendor/samsung/m12-common:libskeymaster4device)
+# keymaster4 target library is set by the device tree (a12s: vendor/samsung/a12s)
 
 PRODUCT_PACKAGES += \
     libcrypto-tm \
@@ -269,7 +265,8 @@ PRODUCT_SOONG_NAMESPACES += \
     $(COMMON_PATH) \
     hardware/google/interfaces \
     hardware/google/pixel \
-    hardware/samsung
+    hardware/samsung \
+    hardware/samsung_slsi/libbt
 
 # Thermal
 PRODUCT_PACKAGES += \

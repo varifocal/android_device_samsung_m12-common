@@ -8,7 +8,6 @@
 
 # Camera
 /dev/m2m1shot_scaler0                                                                                     u:object_r:m2m1shot_device:s0
-/dev/caminfo                                                                                              u:object_r:caminfo_device:s0
 /sys/devices/virtual/camera/flash/rear_flash                                                              u:object_r:sysfs_camera_writable:s0
 /sys/devices/virtual/camera/rear/fw_update                                                                u:object_r:sysfs_camera_writable:s0
 /sys/devices/virtual/camera/rear/ssrm_camera_info                                                         u:object_r:sysfs_camera_writable:s0
@@ -80,8 +79,6 @@
 /data/per_boot(/.*)?                                                                                      u:object_r:per_boot_file:s0
 
 # Sensor hub
-/dev/shub_data_injection                                                                                  u:object_r:ssp_device:s0
-/dev/shub_sensorhub                                                                                       u:object_r:ssp_device:s0
 
 # Param
 /dev/block/mmcblk0p6                                                                                      u:object_r:param_block_device:s0
