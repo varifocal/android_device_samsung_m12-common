@@ -129,6 +129,7 @@ BOARD_VENDOR := samsung
 TARGET_BOARD_PLATFORM := universal3830
 TARGET_BOOTLOADER_BOARD_NAME := exynos850
 TARGET_SOC := exynos850
+include hardware/samsung_slsi-linaro/config/BoardConfig850.mk
 
 ## DTB
 BOARD_DTB_CFG := $(COMMON_PATH)/configs/kernel/$(TARGET_SOC).cfg

@@ -81,9 +81,17 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.vibrator-service.samsung
 
-# Display
+# Display (open slsi-linaro stack, as Galaxy A21s on lineage-23.2)
 PRODUCT_PACKAGES += \
-    libshim_ui
+    libshim_ui \
+    android.hardware.composer.hwc3-service.slsi \
+    android.hardware.graphics.allocator@2.0-impl:64 \
+    android.hardware.graphics.allocator@2.0-service \
+    android.hardware.graphics.mapper@2.0-impl-2.1 \
+    gralloc.universal3830
+
+PRODUCT_PACKAGES += \
+    libGrallocWrapper
 
 # Dynamic Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
@@ -266,7 +274,11 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/google/interfaces \
     hardware/google/pixel \
     hardware/samsung \
-    hardware/samsung_slsi/libbt
+    hardware/samsung_slsi/libbt \
+    hardware/samsung_slsi-linaro/graphics \
+    hardware/samsung_slsi-linaro/exynos \
+    hardware/samsung_slsi-linaro/exynos/gralloc \
+    hardware/samsung_slsi-linaro/exynos/gralloc/gralloc3
 
 # Thermal
 PRODUCT_PACKAGES += \
