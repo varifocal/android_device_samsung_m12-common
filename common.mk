@@ -88,7 +88,8 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator@2.0-impl:64 \
     android.hardware.graphics.allocator@2.0-service \
     android.hardware.graphics.mapper@2.0-impl-2.1 \
-    gralloc.universal3830
+    gralloc.universal3830 \
+    libGrallocMapperCamera
 
 PRODUCT_PACKAGES += \
     libGrallocWrapper

@@ -113,11 +113,7 @@ vendor/etc/init/android.hardware.graphics.allocator@4.0-service.rc
 -vendor/lib64/hw/android.hardware.graphics.allocator@4.0-impl.so
 -vendor/lib64/hw/android.hardware.graphics.mapper@4.0-impl.so
 
-# Camera gralloc - from a21s A217FXXU8DVF6
-vendor/lib/hw/gralloc.exynos850.so
-vendor/lib64/hw/gralloc.exynos850.so
-vendor/lib/libGrallocMapperCamera.so
-vendor/lib64/libGrallocMapperCamera.so
+# gralloc + camera gralloc now built from hardware/samsung_slsi-linaro gralloc3
 
 # Firmware
 vendor/firmware/MCD_NACHO_slog.bin
