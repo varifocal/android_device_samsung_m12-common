@@ -21,6 +21,10 @@ $(call inherit-product, vendor/samsung/m12-common/m12-common-vendor.mk)
 
 PRODUCT_CHARACTERISTICS := phone
 
+# bring-up diagnostics: bring up adb at boot with no prompt so logs can be
+# captured live over USB during a hang
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += persist.sys.usb.config=adb
+
 # Audio
 # The AOSP source HIDL audio HAL (android.hardware.audio@7.0-impl,
 # android.hardware.audio.effect@7.0-impl, android.hardware.audio.service,

@@ -61,7 +61,7 @@ BOARD_MKBOOTIMG_ARGS += --ramdisk_offset $(BOARD_RAMDISK_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_TAGS_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 BOARD_MKBOOTIMG_ARGS += --second_offset $(BOARD_KERNEL_SECOND_OFFSET)
-BOARD_KERNEL_CMDLINE += androidboot.hardware=exynos850 androidboot.selinux=permissive loop.max_part=7
+BOARD_KERNEL_CMDLINE += androidboot.hardware=exynos850 androidboot.selinux=permissive printk.devkmsg=on loop.max_part=7
 ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=0
 
 ## Camera
