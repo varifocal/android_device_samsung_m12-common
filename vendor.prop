@@ -67,3 +67,8 @@ ro.boot.wificountrycode=00
 ro.vendor.vibrator_hal.click_duration=60
 ro.vendor.vibrator_hal.tick_duration=50
 ro.vendor.vibrator_hal.texture_tick_duration=40
+
+# bring-up: persist logcat to /data for post-mortem
+persist.logd.logpersistd=logcatd
+persist.logd.logpersistd.enable=true
+persist.logd.size=4194304
